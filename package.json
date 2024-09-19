@@ -1,0 +1,11 @@
+{
+  "name": "prof-backend-setup",
+  "version": "1.0.0",
+  "description": "a backend project setup to learn professional backend developer",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ashutosh Maurya",
+  "license": "ISC"
+}
