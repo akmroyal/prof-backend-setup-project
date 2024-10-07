@@ -8,6 +8,7 @@ import {
     getCurrentUser,
     updateUserAvatar,
     updateUserCoverImage,
+    updateUserAccountDetails,
     getUserChannleProfile,
     getWatchHistory
 } from "../controllers/user.controller.js";
@@ -35,7 +36,7 @@ router.route("/login").post(loginUser)
 
 // secured route's 
 router.route("/logout").post(verifyJWT, logOutUser)
-router.route("refresh-token").post(refreshAccessToken)
+router.route("/refresh-token").post(refreshAccessToken)
 router.route("/change-password").post(verifyJWT, changeCurrentPassword)
 router.route("/current-user").get(verifyJWT, getCurrentUser)
 router.route("/update-account").patch(verifyJWT, updateUserAccountDetails)

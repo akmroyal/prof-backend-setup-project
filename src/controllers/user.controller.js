@@ -336,7 +336,7 @@ const getUserChannleProfile = asyncHandler(async (req, res) => {
     const channel = await user.aggregate([
         {
             $match: {
-                username: username?.toLowerCase(),
+                userName: username?.toLowerCase(),
             }
         },
         {
@@ -397,7 +397,7 @@ const getUserChannleProfile = asyncHandler(async (req, res) => {
 })
 
 const getWatchHistory = asyncHandler(async (req, res) => {
-    const user = await user.aggregate([
+    const result = await user.aggregate([
         {
             $match: {
                 _id: new mongoose.Types.ObjectId(req.User._id)
@@ -438,12 +438,15 @@ const getWatchHistory = asyncHandler(async (req, res) => {
             }
         }
     ])
+    if (!result || !result.length || !result[0].watchHistory) {
+        throw new ApiError(404, "No watch history found for this user.");
+    }
     return res
         .status(200)
         .json(
             new ApiResponse(
                 200,
-                user[0].WatchHistory,
+                result[0].WatchHistory,
                 "watch history fetched successfully"
             )
         )
